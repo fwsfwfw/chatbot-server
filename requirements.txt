@@ -1,3 +1,8 @@
 flask
 flask-cors
-google-generativeai
+openai
+requests
+Pillow
+urllib3
+httpx
+cairosvg
