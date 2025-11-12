@@ -40,7 +40,7 @@ api_key_clean = api_key.replace("\u200f", "")  # הסרת התו הבעייתי
 # הגדרת הלקוח של OpenAI עם השבתת אימות SSL
 openai.api_key = api_key_clean
 http_client = httpx.Client(verify=False)
-openai.api_requestor._thread_context.session = http_client
+openai.api_requestor.Session = http_client
 
 MODEL_NAME = "gpt-4o"
 
@@ -294,3 +294,4 @@ if __name__ == "__main__":
 
     # מאזין לכל הכתובות, לא רק ל-127.0.0.1
     app.run(host='0.0.0.0', port=args.port)
+
