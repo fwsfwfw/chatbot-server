@@ -29,26 +29,26 @@ def convert_svg_to_png_bytes(svg_path: str) -> bytes:
         print(f"⚠️ שגיאה בהמרת SVG ל־PNG: {e}")
         return None
 
-# ביטול SSL לאזהרות dev
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings()
 ssl._create_default_https_context = ssl._create_unverified_context
 
 api_key = "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"
-api_key_clean = api_key.replace("\u200f", "")  # הסרת התו הבעייתי
+api_key_clean = api_key.replace("\u200f", "")  # הסרת תווים נסתרים
 
-# הגדרת הלקוח של OpenAI עם השבתת אימות SSL
 openai.api_key = api_key_clean
 http_client = httpx.Client(verify=False)
 
 MODEL_NAME = "gpt-4o"
 
-# יצירת אפליקציית Flask
 app = Flask(__name__)
 CORS(app)
 
-CACHE_FILE = r"/root/xaxa_browser/zicaron.json"
-IMAGE_FOLDER = r"/root/xaxa_browser/sif_images"
+BASE_DIR = os.path.join(os.getcwd(), "xaxa_browser")
+os.makedirs(BASE_DIR, exist_ok=True)
+
+CACHE_FILE = os.path.join(BASE_DIR, "zicaron.json")
+IMAGE_FOLDER = os.path.join(BASE_DIR, "sif_images")
 os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
 check_queue = Queue()
@@ -293,5 +293,6 @@ if __name__ == "__main__":
 
     # מאזין לכל הכתובות, לא רק ל-127.0.0.1
     app.run(host='0.0.0.0', port=args.port)
+
 
 
