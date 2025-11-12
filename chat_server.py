@@ -38,7 +38,6 @@ api_key = "sk-proj-oqrbjkDwNakDqELq5EIPLcTTeDUppDcwixQWeFzFAKf6Nqv6CV1UGY6RFmnlM
 api_key_clean = api_key.replace("\u200f", "")  # הסרת תווים נסתרים
 
 client = OpenAI(api_key=api_key_clean)
-http_client = httpx.Client(verify=False)
 
 MODEL_NAME = "gpt-4o"
 
@@ -305,6 +304,7 @@ if __name__ == "__main__":
 
     # מאזין לכל הכתובות, לא רק ל-127.0.0.1
     app.run(host='0.0.0.0', port=args.port)
+
 
 
 
