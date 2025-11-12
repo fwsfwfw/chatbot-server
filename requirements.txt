@@ -1,8 +1,9 @@
 flask
 flask-cors
-openai
+openai==1.6.1
 requests
 Pillow
 urllib3
 httpx
 cairosvg
+
