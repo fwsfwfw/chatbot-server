@@ -1,4 +1,5 @@
 import openai
+from openai import OpenAI
 import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -304,6 +305,7 @@ if __name__ == "__main__":
 
     # מאזין לכל הכתובות, לא רק ל-127.0.0.1
     app.run(host='0.0.0.0', port=args.port)
+
 
 
 
