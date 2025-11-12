@@ -36,7 +36,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 api_key = "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"
 api_key_clean = api_key.replace("\u200f", "")  # הסרת תווים נסתרים
 
-openai.api_key = api_key_clean
+client = OpenAI(api_key=api_key_clean)
 http_client = httpx.Client(verify=False)
 
 MODEL_NAME = "gpt-4o"
@@ -97,10 +97,15 @@ def check_worker():
             if not encoded.strip():
                 raise ValueError("base64 ריק – לא ניתן לשלוח ל־OpenAI")
 
-            # השתמש ב־openai.api_key ישירות
-            response = openai.ChatCompletion.create(
+            # ✅ קריאה חדשה ל‑OpenAI
+            response = client.chat.completions.create(
                 model=MODEL_NAME,
-                prompt="האם יש בתמונה אישה?",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "האם יש בתמונה אישה? תענה במילה אחת: כן או לא."
+                    }
+                ],
                 max_tokens=10,
                 temperature=0,
             )
@@ -111,7 +116,7 @@ def check_worker():
                 if isinstance(response, str):
                     result_text = response.strip().lower().strip(".!,? ")
                 elif hasattr(response, "choices"):
-                    result_text = response.choices[0].text.strip().lower().strip(".!,? ")
+                    result_text = response.choices[0].message.content.strip().lower().strip(".!,? ")
                 else:
                     print("⚠️ תגובה לא צפויה מ־OpenAI:", type(response))
                     result_text = "כן"
@@ -224,17 +229,23 @@ def check_image():
         with open(file_path, "rb") as img_file:
             encoded = base64.b64encode(img_file.read()).decode("utf-8")
 
-        response = openai.ChatCompletion.create(
-            model=MODEL_NAME,
-            prompt="האם יש בתמונה אישה?",
-            max_tokens=10,
-            temperature=0,
-        )
+            # ✅ קריאה חדשה ל‑OpenAI
+            response = client.chat.completions.create(
+                model=MODEL_NAME,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "האם יש בתמונה אישה? תענה במילה אחת: כן או לא."
+                    }
+                ],
+                max_tokens=10,
+                temperature=0,
+            )
 
-        print("🔵 OpenAI response:", response)
+            print("🔵 OpenAI response:", response)
 
         try:
-            result_text = response.choices[0].text.strip().lower().strip(".!,? ")
+            result_text = response.choices[0].message.content.strip().lower().strip(".!,? ")
         except Exception as e:
             print("⚠️ שגיאה בפיענוח תשובת OpenAI:", e)
             result_text = "כן"
@@ -293,6 +304,7 @@ if __name__ == "__main__":
 
     # מאזין לכל הכתובות, לא רק ל-127.0.0.1
     app.run(host='0.0.0.0', port=args.port)
+
 
 
 
