@@ -1,9 +1,0 @@
-flask
-flask-cors
-openai==1.6.1
-requests
-Pillow
-urllib3
-httpx
-cairosvg
-
