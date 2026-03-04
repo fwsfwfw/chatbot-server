@@ -1,0 +1,652 @@
+/* Global Styles with Light Backgrounds and Subtle Textures */
+
+/* Color Variables - Centralized color management */
+:root {
+  /* Blue Color Scheme */
+  --primary-blue-dark: #0A2A43;
+  --primary-blue-medium: #1B4F6F;
+  --primary-blue-light: #2C5F7E;
+
+  /* Background Colors */
+  --bg-light-primary: #f8faf9;
+  --bg-light-secondary: #f0f4f3;
+  --bg-light-tertiary: #f5f9f7;
+  --bg-white: #ffffff;
+  --bg-paper: #fefefe;
+  --bg-section-light: #fafcfb;
+
+  /* Text Colors */
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-light: #6c757d;
+  --text-white: #ffffff;
+
+  /* Border Colors */
+  --border-light: rgba(10, 42, 67, 0.1);
+  --border-medium: rgba(10, 42, 67, 0.2);
+  --border-blue: rgba(10, 42, 67, 0.3);
+
+  /* Shadow Colors */
+  --shadow-light: rgba(10, 42, 67, 0.08);
+  --shadow-medium: rgba(10, 42, 67, 0.1);
+  --shadow-dark: rgba(10, 42, 67, 0.4);
+
+  /* Overlay/Texture Colors */
+  --overlay-blue-light: rgba(10, 42, 67, 0.015);
+  --overlay-blue-medium: rgba(27, 79, 111, 0.01);
+  --overlay-blue-dark: rgba(10, 42, 67, 0.02);
+}
+
+/* Base body background with subtle gradient texture */
+body {
+  background: linear-gradient(135deg, var(--bg-light-primary) 0%, var(--bg-light-secondary) 50%, var(--bg-light-tertiary) 100%);
+  background-attachment: fixed;
+  position: relative;
+  color: var(--text-primary);
+  font-family: 'Heebo', 'Arial', 'Helvetica', sans-serif;
+}
+
+/* Add a subtle noise texture overlay with blue tones */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      var(--overlay-blue-light) 2px,
+      var(--overlay-blue-light) 4px),
+    repeating-linear-gradient(90deg,
+      transparent,
+      transparent 2px,
+      var(--overlay-blue-medium) 2px,
+      var(--overlay-blue-medium) 4px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Alternative section backgrounds with subtle patterns */
+.section-light-bg {
+  background: linear-gradient(to bottom, var(--bg-section-light) 0%, #f6faf8 100%);
+  position: relative;
+}
+
+.section-light-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, var(--overlay-blue-dark) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, var(--overlay-blue-dark) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Card backgrounds with soft texture - Light */
+.card-texture {
+  background: linear-gradient(135deg, var(--bg-white) 0%, #f9fcfb 100%);
+  position: relative;
+}
+
+/* Card backgrounds with soft texture - Dark for navbar/footer */
+.card-texture-dark {
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue-medium) 100%);
+  position: relative;
+}
+
+.card-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(45deg,
+      transparent,
+      transparent 10px,
+      var(--overlay-blue-light) 10px,
+      var(--overlay-blue-light) 11px);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Hero section special background */
+.hero-texture {
+  background:
+    linear-gradient(135deg, #f0f9f6 0%, #e6f5f0 50%, #f5faf8 100%);
+  position: relative;
+}
+
+.hero-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(10, 42, 67, 0.03) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(27, 79, 111, 0.03) 0%, transparent 30%),
+    radial-gradient(circle at 50% 50%, var(--overlay-blue-light) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Soft paper-like texture for content areas */
+.paper-texture {
+  background:
+    linear-gradient(to bottom, var(--bg-paper) 0%, #f9fdfb 100%);
+  position: relative;
+}
+
+.paper-texture::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(0deg,
+      rgba(0, 0, 0, 0.005) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.005) 3px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Subtle wave pattern for footer or sections */
+.wave-texture {
+  background:
+    linear-gradient(to right, #f7fbf9 0%, #f2f8f5 50%, #f7fbf9 100%);
+  position: relative;
+}
+
+.wave-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-radial-gradient(circle at 0 0,
+      transparent 0,
+      var(--overlay-blue-light) 10px,
+      transparent 20px);
+  pointer-events: none;
+}
+
+/* Smooth transitions for all backgrounds */
+* {
+  transition: background-color 0.3s ease;
+}
+
+/* Custom Scroll Animations - Additional Effects */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.animation-delay-1200 {
+  animation-delay: 1200ms;
+}
+
+.animation-delay-1400 {
+  animation-delay: 1400ms;
+}
+
+.animation-delay-1600 {
+  animation-delay: 1600ms;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(10, 42, 67, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(10, 42, 67, 0.4);
+  }
+}
+
+/* Hover Animations */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px var(--shadow-medium);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px var(--primary-blue-light);
+}
+
+/* Override pure white backgrounds */
+.bg-white,
+[class*="bg-white"] {
+  background: linear-gradient(135deg, #fdfefe 0%, #f9fcfb 100%) !important;
+}
+
+/* Enhanced shadow for depth */
+.shadow-soft {
+  box-shadow: 0 2px 15px var(--shadow-light);
+}
+
+.shadow-soft-lg {
+  box-shadow: 0 4px 25px var(--shadow-medium);
+}
+
+/* Typography - Heebo Font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  color: var(--text-primary);
+  font-family: 'Heebo', 'Arial', 'Helvetica', sans-serif;
+}
+
+p {
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--primary-blue-dark);
+  color: var(--text-white);
+  font-weight: bold;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--border-blue);
+}
+
+.btn-primary:hover {
+  background: var(--primary-blue-medium);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px var(--shadow-dark);
+}
+
+.btn-secondary {
+  background: var(--primary-blue-light);
+  color: var(--text-white);
+  font-weight: bold;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--primary-blue-medium);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-blue-medium);
+  transform: scale(1.05);
+}
+
+/* Card Styles */
+.halachic-card {
+  background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue-medium));
+  border: 2px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 2rem;
+  color: var(--text-white);
+  box-shadow: 0 4px 20px var(--shadow-dark);
+  transition: all 0.3s ease;
+}
+
+.halachic-card:hover {
+  border-color: var(--primary-blue-light);
+  box-shadow: 0 8px 30px var(--border-blue);
+}
+
+/* Logo Styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Color overrides for components */
+.text-brand-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-brand-800 {
+  color: var(--text-secondary) !important;
+}
+
+.bg-brand-800,
+.border-brand-800,
+.hover\:bg-brand-900 {
+  background-color: var(--primary-blue-light) !important;
+  color: var(--text-white) !important;
+  border-color: var(--primary-blue-light) !important;
+}
+
+.bg-brand-purple {
+  background-color: var(--primary-blue-dark) !important;
+  color: var(--text-white) !important;
+}
+
+/* Utility Classes for Components */
+
+/* Text colors for different backgrounds */
+.text-on-light-bg {
+  color: var(--text-primary) !important;
+}
+
+.text-on-dark-bg {
+  color: var(--text-white) !important;
+}
+
+.text-heading-light {
+  color: var(--text-primary) !important;
+}
+
+.text-heading-dark {
+  color: var(--text-white) !important;
+}
+
+.text-body-light {
+  color: var(--text-secondary) !important;
+}
+
+.text-body-dark {
+  color: var(--text-white) !important;
+}
+
+.text-muted-light {
+  color: var(--text-light) !important;
+}
+
+.text-muted-dark {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.text-white {
+  color: var(--text-white) !important;
+}
+
+.text-gold-accent,
+.text-brand-accent {
+  color: var(--primary-blue-light) !important;
+}
+
+.bg-gold-accent,
+.bg-brand-accent {
+  background-color: var(--primary-blue-light) !important;
+}
+
+.bg-accent-blue {
+  background-color: var(--primary-blue-light) !important;
+}
+
+.bg-secondary-bg {
+  background-color: var(--primary-blue-medium) !important;
+}
+
+.border-gold-accent,
+.border-brand-accent {
+  border-color: var(--primary-blue-light) !important;
+}
+
+.text-dark-button {
+  color: var(--text-white) !important;
+}
+
+.hover\:text-gold-accent:hover,
+.hover\:text-brand-accent:hover {
+  color: var(--primary-blue-light) !important;
+}
+
+.hover\:bg-yellow-500:hover,
+.hover\:bg-gold-hover:hover {
+  background-color: var(--primary-blue-medium) !important;
+}
+
+.hover\:bg-secondary-bg:hover {
+  background-color: var(--primary-blue-dark) !important;
+}
+
+.border-gray-100 {
+  border-color: var(--border-light) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.shadow-yellow-900\/30,
+.shadow-gold\/30 {
+  box-shadow: 0 10px 15px -3px var(--border-blue), 0 4px 6px -4px var(--border-blue) !important;
+}
+
+.shadow-blue-900\/30 {
+  box-shadow: 0 10px 15px -3px var(--shadow-dark), 0 4px 6px -4px var(--shadow-dark) !important;
+}
+
+.text-gray-500 {
+  color: var(--text-light) !important;
+}
+
+.text-gray-400 {
+  color: var(--text-light) !important;
+}
+
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.border-gray-200 {
+  border-color: var(--border-light) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--bg-section-light) !important;
+}
+
+.border-brand-200 {
+  border-color: var(--border-light) !important;
+}
+
+.bg-green-500 {
+  background-color: var(--primary-blue-light) !important;
+}
+
+.shadow-brand-900\/10 {
+  box-shadow: 0 10px 15px -3px var(--shadow-light), 0 4px 6px -4px var(--shadow-light) !important;
+}
+
+.hover\:text-brand-800:hover {
+  color: var(--text-secondary) !important;
+}
+
+.hover\:border-brand-800:hover {
+  border-color: var(--primary-blue-light) !important;
+}
+
+.text-gray-800 {
+  color: var(--text-primary) !important;
+}
+
+.text-light-gray-text {
+  color: var(--text-light) !important;
+}
+
+.bg-accent-blue\/10 {
+  background-color: rgba(44, 95, 126, 0.1) !important;
+}
+
+.bg-gold-accent\/10 {
+  background-color: rgba(44, 95, 126, 0.1) !important;
+}
+
+.from-accent-blue\/20 {
+  --tw-gradient-from: rgba(44, 95, 126, 0.2) !important;
+}
+
+
+.nav-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 4px;
+  background-color: currentColor;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease, opacity 200ms ease;
+  border-radius: 2px;
+}
+
+/* אפקט "מקושקש" עדין */
+.nav-underline::after {
+  filter: url(#rough);
+}
+
+.nav-underline:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+  text-decoration: none;
+}
+
+
+/* Accessibility - High Contrast for Readability */
+a {
+  color: var(--primary-blue-light);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light-primary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-blue-light);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue-medium);
+}
